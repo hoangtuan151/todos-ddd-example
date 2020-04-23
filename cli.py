@@ -2,9 +2,11 @@ import sys
 import traceback
 from todos.domain.task import Task
 from todos.repos.mem_repos import MemRepos
+from todos.repos.sqlite_repos import SQLiteRepos
 from todos.usecases.task_uc import TaskUC
 
-REPO = MemRepos()
+# REPO = MemRepos()
+REPO = SQLiteRepos('./sqlitedb/sqlite.db')
 USER = None
 
 
