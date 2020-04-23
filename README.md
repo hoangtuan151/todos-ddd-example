@@ -9,7 +9,7 @@ An example todos app with DDD approach
 - User will be logged in by providing a username (no need password, no need to register)
 - User could manage one ore more todo task items
 - Each task's state could be as follow: new -> doing -> done
-- To stay focused, user could only have 3 doing tasks at a time. But if he has finished 3 tasks in his lifetime usage, he could have up to 5 concurrent doing tasks
+- To stay focused, user could only have 3 doing tasks at a time. But if he has finished at least 3 tasks in his lifetime usage, he could have up to 5 concurrent doing tasks
 - User could delete/remove any task in the list
 - No need to manage task creation time
 

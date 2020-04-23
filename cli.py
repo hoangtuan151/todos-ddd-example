@@ -30,7 +30,7 @@ def login_handler():
 def list_tasks():
     task_uc = TaskUC(REPO)
     task_list = task_uc.get_task_list(USER)
-    print(BCOLORS.PURPLE + USER + '\'s task_list:')
+    print(BCOLORS.PURPLE + USER + '\'s task list:')
     for task in task_list:
         print(BCOLORS.PURPLE + '- ' + str(task))
 
@@ -45,6 +45,29 @@ def add_task():
     print(BCOLORS.PURPLE + 'created:', result)
 
 
+def mark_doing():
+    print('Enter task id:')
+    task_id = sys.stdin.readline()
+    task_id = task_id.strip()
+
+    task_uc = TaskUC(REPO, REPO)
+    try:
+        task_uc.mark_task_as_doing(USER, task_id)
+        print(BCOLORS.PURPLE + 'SUCCESS')
+    except Exception as e:
+        print(BCOLORS.FAIL + 'Exception:', str(e))
+
+
+def mark_done():
+    print('Enter task id:')
+    task_id = sys.stdin.readline()
+    task_id = task_id.strip()
+
+    task_uc = TaskUC(REPO)
+    task_uc.mark_task_as_done(USER, task_id)
+    print(BCOLORS.PURPLE + 'SUCCESS')
+
+
 def print_command_list():
     print(BCOLORS.BOLD + '+' * 25 + BCOLORS.ENDC)
     print(BCOLORS.BOLD + '+++ TODOS CLI Program'.ljust(25-4, ' '), '+++' + BCOLORS.ENDC)
@@ -57,17 +80,19 @@ def print_command_list():
     print('1. Login by username')
     print('2. List all your tasks')
     print('3. Add task')
+    print('4. Mark task doing')
+    print('5. Mark task done')
 
     print('-' * 25)
 
 
 def get_command():
-    print(BCOLORS.OKGREEN + '\n#Your next CMD:' + BCOLORS.ENDC)
+    print(BCOLORS.OKGREEN + '\n#Enter next command:' + BCOLORS.ENDC)
     cmd = sys.stdin.readline()
     try:
         return int(cmd)
     except:
-        return 0
+        return -1
 
 
 if __name__ == '__main__':
@@ -83,15 +108,10 @@ if __name__ == '__main__':
                 list_tasks()
             elif cmd == 3:
                 add_task()
-            # elif cmd == 4:
-            #     testKeepaliveRequest()
-            # elif cmd == 5:
-            #     Conn.close()
-            #     print 'Connection CLOSED'
-            # elif cmd == 6:
-            #     testDisplayRequest()
-            # elif cmd == 7:
-            #     startKeepAliveThread()
+            elif cmd == 4:
+                mark_doing()
+            elif cmd == 5:
+                mark_done()
         except:
             print('>>>>>>>>> Exception <<<<<<<<<')
             traceback.print_exc()
