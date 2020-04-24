@@ -39,6 +39,7 @@ Response
 ]
 
 ```
+
 2. Add task
 ```
 POST /tasks
@@ -49,5 +50,18 @@ Header::Authorization: Bearer <username>
 Header::Content-Type: application/json
 Body: {
     "description": "new task"
+}
+```
+
+3. Update task status
+```
+PUT /tasks/<task_id>/status
+
+Request
+-------
+Header::Authorization: Bearer <username>
+Header::Content-Type: application/json
+Body: {
+    "status": 1  # 1: doing; 2: done
 }
 ```

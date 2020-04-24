@@ -61,3 +61,20 @@ def api_new_task():
     task_uc = TaskUC(REPO)
     result = task_uc.create_task(username, description)
     return flask_response(json.dumps(result, cls=TaskJsonEncoder))
+
+
+@app.route('/tasks/<task_id>/status', methods=['PUT'])
+def api_update_task_status(task_id):
+    username = auth_check()
+    req_body = request.json
+    new_status = req_body['status']
+
+    try:
+        task_uc = TaskUC(REPO, REPO)
+        if new_status == 1:
+            task_uc.mark_task_as_doing(username, task_id)
+        elif new_status == 2:
+            task_uc.mark_task_as_done(username, task_id)
+        return flask_response('SUCCESS', mimetype='text/plain')
+    except Exception as e:
+        return flask_response(str(e), mimetype='text/plain')
