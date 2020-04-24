@@ -21,7 +21,6 @@ class SQLiteRepos:
         cur = self._db_conn.cursor()
         cur.execute(sql, param)
         self._db_conn.commit()
-        print('debug sql:', cur.rowcount)
 
     def get_tasks_by_username(self, username):
         sql = '''SELECT id, desc, state FROM Task WHERE username = ?'''

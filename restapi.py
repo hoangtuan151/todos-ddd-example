@@ -50,3 +50,14 @@ def api_get_all_tasks():
     task_list = task_uc.get_task_list(username)
     result = json.dumps(task_list, cls=TaskJsonEncoder)
     return flask_response(result)
+
+
+@app.route('/tasks', methods=['POST'])
+def api_new_task():
+    username = auth_check()
+    req_body = request.json
+    description = req_body['description']
+
+    task_uc = TaskUC(REPO)
+    result = task_uc.create_task(username, description)
+    return flask_response(json.dumps(result, cls=TaskJsonEncoder))
