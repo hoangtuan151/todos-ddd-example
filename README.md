@@ -18,3 +18,36 @@ An example todos app with DDD approach
 
 ### SQLite repository
 ![](https://www.plantuml.com/plantuml/img/TS-n2i9030RWFK-HkT0-W9JIoSN5GHyWU56FzbAvf8YqlhkzKpi8Rk7d8t_Igb6qCVG0sdcvKQI0UYKttBrSy4ozCW2BUNlWKJdY18W5Ziie57Y3QZ79kjxlcWQUApwGTX_itIz3BCj_UxPlKA1ZFNtp72otsYfJLJvedgjgc78Vj2mkFVC2)
+
+## Round 2
+
+### REST endpoints with Flask
+
+1. Get all tasks of user
+```
+GET /tasks
+
+Request
+--------
+Header::Authorization: Bearer <username>
+
+Response
+--------
+[
+    { "taskid": "abc...", "description": "...", "status": "..." },
+    { "taskid": "xyz...", "description": "...", "status": "..." }
+]
+
+```
+2. Add task
+```
+POST /tasks
+
+Request
+-------
+Header::Authorization: Bearer <username>
+Header::Content-Type: application/json
+Body: {
+    "description": "new task"
+}
+```

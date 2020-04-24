@@ -1,3 +1,4 @@
+from todos.domain.task import Task
 from todos.domain.user import User
 import sqlite3
 from sqlite3 import Error
@@ -23,12 +24,18 @@ class SQLiteRepos:
         print('debug sql:', cur.rowcount)
 
     def get_tasks_by_username(self, username):
-        sql = '''SELECT * FROM Task WHERE username = ?'''
+        sql = '''SELECT id, desc, state FROM Task WHERE username = ?'''
 
         cur = self._db_conn.cursor()
         cur.execute(sql, (username,))
 
-        return cur.fetchall()
+        rows = cur.fetchall()
+
+        result = []
+        for row in rows:
+            result.append(Task(row[0], row[1], row[2]))
+
+        return result
 
     def find_user_by_username(self, username):
         sql = '''
