@@ -9,7 +9,9 @@ An example todos app with DDD approach
 - User will be logged in by providing a username (no need password, no need to register)
 - User could manage one ore more todo task items
 - Each task's state could be as follow: new -> doing -> done
-- To stay focused, user could only have 3 doing tasks at a time. But if he has finished at least 3 tasks in his lifetime usage, he could have up to 5 concurrent doing tasks
+- To stay focused, user could only have 3 doing tasks at a time.
+But if he has finished at least 3 tasks in his lifetime usage,
+he could have up to 5 concurrent doing tasks
 - User could delete/remove any task in the list
 - No need to manage task creation time
 
@@ -65,3 +67,16 @@ Body: {
     "status": 1  # 1: doing; 2: done
 }
 ```
+
+## Round 3
+
+### New user stories
+- Now, we need to manage the emergency of a task (true or false)
+- To keep focused, each user could only have 3 doing tasks at a time,
+but if he has a really urgent task, he could add
+1 and only 1 emergency task to having 4 concurrency doing tasks
+- If a user has finished at least 3 tasks in his lifetime usage,
+he could have up to 5 concurrent doing tasks
+
+### Next domain model
+![](https://www.plantuml.com/plantuml/img/VL79Ri8m4BtxAqOvGTH6z5gXYggzSA2gH3cZmHaI2sTSsHC1NVwzjka20ZMtUVFcBSua27hfEwjKs1X-HOyTQ8iXt8jui-g5fjhntBmHZ8ueeSNQRGqti4ORIAby0uj07juLn6yUp-EwZmXZHncRie0uGRkiNLmk1SFcRC5qm3z_H5_YT2fgwkEffg2FvrX93dvbcOIf8zyGwtrP9b73GdwDchBm31cRo61vTjRe_RVHoZaBQAtRFj5E7bFQn1waEbTHDoKio-5Vo1dk7Xphtllaz7jm8ffRjfv2wsoTJlDp5JS5N4CngYekSgHRw7Ae07TgiCY62Hx2kAekPbRgOfFnH-J_cqkf2N4T__uN)
