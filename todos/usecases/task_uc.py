@@ -8,9 +8,9 @@ class TaskUC:
         self._task_repo = task_repo
         self._user_repo = user_repo
 
-    def create_task(self, username, desc):
+    def create_task(self, username, desc, emergency=0):
         tid = str(uuid.uuid4())
-        new_task = Task(tid, desc)
+        new_task = Task(tid, desc, emergency=emergency)
         self._task_repo.create_task_for_user(username, new_task)
         return new_task
 
@@ -19,7 +19,8 @@ class TaskUC:
 
     def mark_task_as_doing(self, username, task_id):
         user = self._user_repo.find_user_by_username(username)
-        management_policy = MaxConcurrencyDoingTaskPolicy(user)
+        task = self._task_repo.find_by_id(task_id)
+        management_policy = MaxConcurrencyDoingTaskPolicy(user, task)
         if management_policy.allow_next_doing_task():
             self._task_repo.mark_task_as_doing(username, task_id)
         else:
