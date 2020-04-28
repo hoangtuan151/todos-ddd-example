@@ -5,9 +5,11 @@ from flask import Response
 from json import dumps, JSONEncoder
 from flask import request
 from todos.repos.sqlite_repos import SQLiteRepos
+from todos.repos.mongo_repos import MongoRepos
 from todos.usecases.task_uc import TaskUC
 
-REPO = SQLiteRepos('./sqlitedb/sqlite.db')
+# REPO = SQLiteRepos('./sqlitedb/sqlite.db')
+REPO = MongoRepos(connect_uri='mongodb+srv://dev_user:shWYBWKhiKXshWfi@mg-clt-itpr5-0104-c9eww.azure.mongodb.net')
 app = Flask(__name__)
 
 
@@ -37,7 +39,8 @@ class TaskJsonEncoder(JSONEncoder):
             return {
                 'taskid': o.tid,
                 'description': o.desc,
-                'status': o.state
+                'status': o.state,
+                'emergency': True if o.emergency == 1 else False
             }
         except AttributeError:
             return super().default(o)
@@ -57,9 +60,10 @@ def api_new_task():
     username = auth_check()
     req_body = request.json
     description = req_body['description']
+    emergency = req_body.get('emergency', 0)
 
     task_uc = TaskUC(REPO)
-    result = task_uc.create_task(username, description)
+    result = task_uc.create_task(username, description, emergency)
     return flask_response(json.dumps(result, cls=TaskJsonEncoder))
 
 
