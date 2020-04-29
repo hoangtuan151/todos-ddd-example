@@ -1,6 +1,13 @@
 # Todos DDD Example
 An example todos app with DDD approach
 
+## References
+- http://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
+- https://hackernoon.com/making-a-case-for-domain-modeling-17cf47030732
+- https://medium.com/swlh/creating-coding-excellence-with-domain-driven-design-88f73d2232c3
+- https://www.javacodegeeks.com/2016/10/architectural-layers-modeling-domain-logic.html
+- https://www.alibabacloud.com/blog/handling-complex-business-scenarios-with-domain-modeling-%E2%80%93-part-1_593863?spm=a2c65.11461447.0.0.acc85f82jfZ0Us
+
 # Domain Modeling Iteration
 
 ## Round 1
